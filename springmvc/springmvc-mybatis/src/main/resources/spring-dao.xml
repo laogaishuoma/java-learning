@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 1. 关联数据库配置文件 -->
+    <context:property-placeholder location="classpath:database.properties" />
+
+    <!-- 2. 连接池, 常用连接池有:
+          dbcp: 半自动化操作，不能自动连接
+          c3p0: 自动化操作(自动化的加载配置文件，并且可以自动设置到对象中
+          druid:
+          hikari: SpringBoot 2.0默认启用
+    -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <!--初始化连接池大小-->
+        <property name="initialSize" value="5"></property>
+        <!--设置最大连接数-->
+        <property name="maxActive" value="100"></property>
+        <!--设置等待时间-->
+        <property name="maxWait" value="5000"/>
+        <!--配置数据源监控的filter-->
+        <property name="filters" value="stat"></property>
+    </bean>
+
+    <!-- 3. sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- 绑定MyBatis的配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+    </bean>
+
+    <!-- 4. 配置dao接口扫描包, 动态的实现了Dao接口可以注入到Spring容器中 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 注入sqlSessionFactory -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <!-- 扫描的dao包 -->
+        <property name="basePackage" value="com.yang.dao" />
+    </bean>
+</beans>
