@@ -16,6 +16,9 @@
         <module>springmvc-handleflow</module>
         <module>springmvc-mysql-druid</module>
         <module>springmvc-mybatis</module>
+        <module>spring-ioc</module>
+        <module>netty-bio</module>
+        <module>netty-learning</module>
     </modules>
 
     <properties>
