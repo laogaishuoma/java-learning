@@ -69,6 +69,7 @@ public class NioServer {
                      * 为该客户端生成一个SocketChannel
                      */
                     SocketChannel socketChannel = serverSocketChannel.accept();
+                    System.out.println("客户端连接成功，生成了一个socketChannel " + socketChannel.hashCode());
                     /**
                      * ----------------------
                      * 将SocketChannel设置为非阻塞
