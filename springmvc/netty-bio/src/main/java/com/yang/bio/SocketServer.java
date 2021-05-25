@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SocketServer {
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(9000);
+        ServerSocket serverSocket = new ServerSocket(6000);
         while(true) {
             System.out.println("等待连接");
             // 阻塞方法

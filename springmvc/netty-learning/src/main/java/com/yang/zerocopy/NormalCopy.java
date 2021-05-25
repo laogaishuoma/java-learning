@@ -1,4 +1,4 @@
-package com.yang.nio;
+package com.yang.zerocopy;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,15 +6,18 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
-public class NioFileChannelCopy {
+public class NormalCopy {
     public static void main(String[] args) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream("/Users/qiaoguoqiang/workspace/learning/1.txt");
+        FileInputStream fileInputStream = new FileInputStream("/Users/qiaoguoqiang/Downloads/素材/视频/美食.mp4");
         FileChannel fileInputStreamChannel = fileInputStream.getChannel();
 
-        FileOutputStream fileOutputStream = new FileOutputStream("/Users/qiaoguoqiang/workspace/learning/2.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("/Users/qiaoguoqiang/workspace/learning/1.mp4");
         FileChannel fileOutputStreamChannel = fileOutputStream.getChannel();
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
+
+        // 准备发送
+        long startTime = System.currentTimeMillis();
 
         while(true) {
             /**
@@ -27,6 +30,7 @@ public class NioFileChannelCopy {
 
             int read = fileInputStreamChannel.read(byteBuffer);
             if (read == -1) {
+                System.out.println("耗时:" + (System.currentTimeMillis() - startTime));
                 break;
             }
             // 将buffer中的数据写入到fileOutputStreamChannel

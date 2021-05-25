@@ -7,7 +7,6 @@ public class BasicBuffer {
         // 举例说明Buffer的使用
         // 创建一个Buffer, 大小为5，即可存放5个int
         IntBuffer intBuffer = IntBuffer.allocate(5);
-
         // 向buffer中存放数据
         for (int i = 0; i < intBuffer.capacity(); i++) {
             intBuffer.put( i * 2 );
