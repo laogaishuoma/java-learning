@@ -2,24 +2,15 @@ package com.yang.codec;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
 /**
  * 自定义一个Handler, 需要继承Netty规定好的某个HandlerAdapter
  */
-public class NettyServerHandler extends ChannelInboundHandlerAdapter {
-    /**
-     * 读取数据
-     * 这里我们可以读取客户端发送的消息
-     * @param ctx 上下文对象，含有pipeline, channel, 地址
-     * @param msg 就是客户端发送的数据，默认Object
-     * @throws Exception
-     */
+public class NettyServerNewHandler extends SimpleChannelInboundHandler<StudentPOJO.Student> {
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        // 获取从客户端发送StudentPOJO.Student
-        StudentPOJO.Student student = (StudentPOJO.Student) msg;
+    protected void channelRead0(ChannelHandlerContext ctx, StudentPOJO.Student student) throws Exception {
         System.out.println("客户端发送的数据: id = " + student.getId() + " name = " + student.getName());
     }
 

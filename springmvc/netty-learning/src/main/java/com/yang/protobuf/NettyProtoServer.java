@@ -1,4 +1,4 @@
-package com.yang.codec;
+package com.yang.protobuf;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -11,7 +11,7 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
  *
  * @author qiaoguoqiang
  */
-public class NettyServer {
+public class NettyProtoServer {
     public static void main(String[] args) throws InterruptedException {
         /**
          * 1. 创建两个线程组: bossGroup和wokerGroup
@@ -51,7 +51,7 @@ public class NettyServer {
                              * 在pipeline加入ProtoBufDecoder
                              * 制定对哪种对象进行解码
                              */
-                            pipeline.addLast("decoder", new ProtobufDecoder(StudentPOJO.Student.getDefaultInstance()));
+                            pipeline.addLast("decoder", new ProtobufDecoder(MyDataInfo.MyMessage.getDefaultInstance()));
                             pipeline.addLast(new NettyServerNewHandler());
                         }
                     });
@@ -60,15 +60,15 @@ public class NettyServer {
             /**
              * 绑定一个端口并且同步，生成了一个ChannelFuture对象
              */
-            ChannelFuture channelFuture = bootstrap.bind(8888).sync();
+            ChannelFuture channelFuture = bootstrap.bind(7005).sync();
 
             channelFuture.addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
                     if (channelFuture.isSuccess()) {
-                        System.out.println("监听端口 6668 成功");
+                        System.out.println("监听端口 7005 成功");
                     } else {
-                        System.out.println("监听端口 6668 失败");
+                        System.out.println("监听端口 7005 失败");
                     }
                 }
             });
