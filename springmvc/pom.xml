@@ -19,6 +19,7 @@
         <module>spring-ioc</module>
         <module>netty-bio</module>
         <module>netty-learning</module>
+        <module>proxy-demos</module>
     </modules>
 
     <properties>

@@ -3,7 +3,6 @@ package com.yang.controller;
 import com.yang.annotation.UserId;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller

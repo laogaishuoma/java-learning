@@ -14,10 +14,10 @@ public class NettyServerNewHandler extends SimpleChannelInboundHandler<MyDataInf
         MyDataInfo.MyMessage.DataType dataType = message.getDataType();
         if (dataType == MyDataInfo.MyMessage.DataType.WorkerType) {
             MyDataInfo.Worker workder = message.getWorkder();
-            System.out.println("客户端发送的数据: id = " + workder.getName() + " name = " + workder.getAge());
+            System.out.println("客户端发送的数据: 工人 名字 = " + workder.getName() + " 年龄 = " + workder.getAge());
         } else if (dataType == MyDataInfo.MyMessage.DataType.StudentType) {
             MyDataInfo.Student student = message.getStudent();
-            System.out.println("客户端发送的数据: id = " + student.getId() + " name = " + student.getName());
+            System.out.println("客户端发送的数据: 学生 ID = " + student.getId() + " 名字 = " + student.getName());
         } else {
             System.out.println("客户端发送的数据格式不对");
         }
