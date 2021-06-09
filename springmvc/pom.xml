@@ -20,6 +20,8 @@
         <module>netty-bio</module>
         <module>netty-learning</module>
         <module>proxy-demos</module>
+        <module>javassist-demos</module>
+        <module>jvm-demos</module>
     </modules>
 
     <properties>

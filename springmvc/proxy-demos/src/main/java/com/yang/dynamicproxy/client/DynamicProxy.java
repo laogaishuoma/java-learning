@@ -10,7 +10,7 @@ import java.lang.reflect.Proxy;
 public class DynamicProxy {
     public static void main(String[] args) {
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-
+        
         /**
          * 1. 创建目标对象
          */
